@@ -1,0 +1,7 @@
+{
+  "name": "my-reviews",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
