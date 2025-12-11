@@ -1,20 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonInput, IonInputPasswordToggle, IonRow, IonCol, IonButton, IonIcon } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
+import { addIcons } from 'ionicons';
+import { enterOutline, fingerPrint } from 'ionicons/icons';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule, IonLabel, IonInput, IonInputPasswordToggle, IonRow, IonCol, IonButton, IonIcon]
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+
+  form = new FormGroup({
+    email: new FormControl('', [Validators.email, Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  })
+
+  constructor(
+    private router: Router
+  ) {
+    addIcons({
+      enterOutline, fingerPrint
+    })
+   }
 
   ngOnInit() {
+  }
+
+  submit() {
+    if(this.form.valid) {
+      this.router.navigateByUrl('/main');
+    }
   }
 
 }
