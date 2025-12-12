@@ -1,16 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>main</ion-title>
+    <ion-title>Main</ion-title>
     <ion-buttons slot="start">
-      <ion-menu-button menu="m1"></ion-menu-button>
+      <ion-menu-button menu="m1" color="light"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">main</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-row>
+    <ion-col size="6">
+      <ion-router-link routerLink="/books" class="icon-block">
+        <ion-icon name="book-outline" color="light"></ion-icon>
+        <p class="icon-label">Books</p>
+      </ion-router-link>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-router-link routerLink="/movies" class="icon-block">
+        <ion-icon name="film-outline" color="light"></ion-icon>
+        <p class="icon-label">Movies</p>
+      </ion-router-link>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <ion-router-link routerLink="/books" class="icon-block">
+        <ion-icon name="person-outline" color="light"></ion-icon>
+        <p class="icon-label">User</p>
+      </ion-router-link>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-router-link routerLink="/books" class="icon-block">
+        <ion-icon name="settings-outline" color="light"></ion-icon>
+        <p class="icon-label">Settings</p>
+      </ion-router-link>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <ion-router-link routerLink="/login" class="icon-block">
+        <ion-icon name="log-out-outline" color="light"></ion-icon>
+        <p class="icon-label">Log-Out</p>
+      </ion-router-link>
+    </ion-col>
+
+
+  </ion-row>
+  
 </ion-content>

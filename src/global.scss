@@ -45,6 +45,16 @@ ion-item{
   --background: transparent;
 }
 
+
+ion-title {
+  color: aliceblue;
+}
+
+ion-menu ion-item {
+  --color: aliceblue !important;            /* Texto blanco */
+}
+
+
 ion-button{
   text-transform: none;
 }

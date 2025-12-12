@@ -1,0 +1,32 @@
+ion-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-icon {
+  font-size: 60px;
+  margin-top: 50px;
+}
+
+
+.icon-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none; 
+}
+
+.icon-block ion-icon {
+  font-size: 60px; 
+  margin-bottom: 8px; 
+}
+
+.icon-label {
+  color: aliceblue; 
+  font-size: 16px;
+  text-align: center;
+  margin: 0;
+}
+
