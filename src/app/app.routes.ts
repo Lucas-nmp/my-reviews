@@ -18,4 +18,12 @@ export const routes: Routes = [
     path: 'start',
     loadComponent: () => import('./pages/start/start.page').then( m => m.StartPage)
   },
+  {
+    path: 'books',
+    loadComponent: () => import('./pages/books/books.page').then( m => m.BooksPage)
+  },
+  {
+    path: 'movies',
+    loadComponent: () => import('./pages/movies/movies.page').then( m => m.MoviesPage)
+  },
 ];
