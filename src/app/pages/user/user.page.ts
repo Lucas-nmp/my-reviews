@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { IonContent, IonLabel, IonInput, IonInputPasswordToggle, IonButton } from '@ionic/angular/standalone';
 import { HeaderComponent } from "src/app/components/header/header.component";
 
 @Component({
@@ -9,9 +9,15 @@ import { HeaderComponent } from "src/app/components/header/header.component";
   templateUrl: './user.page.html',
   styleUrls: ['./user.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, HeaderComponent]
+  imports: [IonContent, IonInput, ReactiveFormsModule, CommonModule, FormsModule, HeaderComponent, IonLabel, IonInputPasswordToggle, IonButton]
 })
 export class UserPage implements OnInit {
+
+    form = new FormGroup({
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      userName: new FormControl('', [Validators.required]),
+    })
 
   constructor() { }
 
