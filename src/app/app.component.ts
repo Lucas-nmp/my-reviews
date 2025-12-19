@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
-import { IonApp, IonRouterOutlet, IonMenu, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonMenuToggle, IonItem, IonLabel } from '@ionic/angular/standalone';
+import { DatabaseService } from './services/database.service';
+import { IonApp, IonMenu, IonHeader, IonToolbar, IonTitle, IonContent, IonMenuToggle, IonItem, IonLabel, IonRouterOutlet } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  imports: [IonApp, IonRouterOutlet, RouterLink, IonMenu, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonMenuToggle, IonItem, IonLabel],
+  imports: [IonApp, IonMenu,  RouterLink, IonHeader, IonToolbar, IonTitle, IonContent, IonMenuToggle, IonItem, IonLabel, IonRouterOutlet],
 })
 export class AppComponent {
-  constructor() {}
+
+  constructor(
+    private platform: Platform,
+    private dbService: DatabaseService
+  ) {
+    this.platform.ready().then(() => {
+      this.dbService.initDatabase();
+    });
+  }
 }
