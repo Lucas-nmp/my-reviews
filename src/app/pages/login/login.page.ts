@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonInput, IonInputPasswordToggle, IonRow, IonCol, IonButton, IonIcon } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonInput, IonInputPasswordToggle, IonRow, IonCol, IonButton, IonIcon, IonText } from '@ionic/angular/standalone';
+import { Router, RouterLink  } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { enterOutline, fingerPrint } from 'ionicons/icons';
 
@@ -11,7 +11,7 @@ import { enterOutline, fingerPrint } from 'ionicons/icons';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule, IonLabel, IonInput, IonInputPasswordToggle, IonRow, IonCol, IonButton, IonIcon]
+  imports: [IonContent, IonHeader, RouterLink, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule, IonLabel, IonInput, IonInputPasswordToggle, IonRow, IonCol, IonButton, IonIcon]
 })
 export class LoginPage implements OnInit {
 

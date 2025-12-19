@@ -1,0 +1,40 @@
+<app-header title="User"></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="d-flex-center">
+
+    <form class="auth-form" [formGroup]= "form">
+
+      <div class="gradient-input">
+        <ion-label>User Name</ion-label>
+        <div class="input">
+          <ion-input formControlName="userName" type="text" placeholder="User name">
+          </ion-input>
+        </div>
+      </div>  
+
+      <div class="gradient-input">
+        <ion-label>E-mail</ion-label>
+        <div class="input">
+          <ion-input formControlName="email" type="email" autocomplete="email" placeholder="correo@correo.com"></ion-input>
+        </div>
+      </div>
+
+      <div class="gradient-input">
+        <ion-label>Password</ion-label>
+        <div class="input">
+          <ion-input formControlName="password" type="password" placeholder="******">
+            <ion-input-password-toggle color="primary" slot="end"></ion-input-password-toggle>
+          </ion-input>
+        </div>
+      </div>  
+
+      <ion-button (click)="register()" [disabled]="form.invalid" class="gradient-btn" mode="ios" expand="block" type="submit">
+        Register
+      </ion-button>
+
+    </form>
+
+  </div>
+  
+</ion-content>

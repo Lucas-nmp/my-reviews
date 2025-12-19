@@ -55,5 +55,38 @@ export class DatabaseService {
     `;
     await this.db.execute(query);
   }
+
+
+  async registerUser(
+    username: string,
+    email: string,
+    password: string
+  ): Promise<boolean> {
+    try {
+      const query = `
+        INSERT INTO users (username, email, password)
+        VALUES (?, ?, ?);
+      `;
+
+      await this.db.run(query, [username, email, password]);
+      return true;
+    } catch (error) {
+      console.error('❌ Error al registrar usuario', error);
+      return false;
+    }
+  }
+
+
+
+  async getUserByEmail(email: string) {
+    const query = `
+      SELECT * FROM users WHERE email = ? LIMIT 1;
+    `;
+
+    const result = await this.db.query(query, [email]);
+    return result.values?.[0] ?? null;
+  }
+
+
 }
 
