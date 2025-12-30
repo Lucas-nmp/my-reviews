@@ -16,7 +16,7 @@
       <ion-list>
 
         @for (movie of movies; track movie.title) {
-          <ion-item button="true">
+          <ion-item button="true" (click)="openMovie(movie)">
           <ion-thumbnail slot="start">
             <img
               [src]="movie.image || 'assets/img/default-movie.png'"

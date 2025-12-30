@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonCard, IonCardHeader, IonCardTitle, IonButton, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel, IonNote } from '@ionic/angular/standalone';
+import { IonContent, IonCard, IonCardHeader, IonCardTitle, IonButton, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel, IonNote, ModalController } from '@ionic/angular/standalone';
 import { HeaderComponent } from "src/app/components/header/header.component";
 import { Movie } from 'src/app/models/movie.model';
+import { MovieDetailModalComponent } from 'src/app/components/movie-detail-modal/movie-detail-modal.component';
 
 @Component({
   selector: 'app-movies',
@@ -14,10 +15,21 @@ import { Movie } from 'src/app/models/movie.model';
 })
 export class MoviesPage implements OnInit {
 
-  constructor() { }
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
+
+  async openMovie(movie: Movie) {
+      const modal = await this.modalCtrl.create({
+        component: MovieDetailModalComponent,
+        componentProps: {
+          movie: movie,
+        },
+      });
+  
+      await modal.present();
+    }
 
   movies: Movie[] = [
       {

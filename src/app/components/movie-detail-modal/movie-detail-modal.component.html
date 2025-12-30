@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+
+      <ion-img [src]="movie.image"></ion-img>
+      <h2><strong>{{ movie.title }}</strong></h2>
+      <h2>Author: {{ movie.protagonist }}</h2>
+
+      <p>
+        <strong>Publication:</strong>
+        {{ movie.publicationYear | date:'dd/MM/yyyy' }}
+      </p>
+
+      <p>
+        <strong>Read:</strong>
+        {{ movie.viewDate| date:'dd/MM/yyyy' }}
+      </p>
+
+      <p>
+        <strong>Review</strong><br />
+        {{ movie.review }}
+      </p>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
