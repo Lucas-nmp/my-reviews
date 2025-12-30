@@ -1,9 +1,43 @@
 <app-header title="Movies"></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title size="large">movies</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Movies watched</ion-card-title>
+    </ion-card-header>
+
+    <ion-button fill="clear" >
+        Add movie
+      </ion-button>
+
+    <ion-card-content>
+
+      <ion-list>
+
+        @for (movie of movies; track movie.title) {
+          <ion-item button="true">
+          <ion-thumbnail slot="start">
+            <img
+              [src]="movie.image || 'assets/img/default-movie.png'"
+              alt="Book cover"
+            />
+          </ion-thumbnail>
+
+          <ion-label>
+            <h2>{{ movie.title }}</h2>
+            <p>{{ movie.protagonist }}</p>
+            <ion-note class="date" color="medium">
+              Read: {{ movie.viewDate | date:'dd/MM/yyyy' }}
+            </ion-note>
+          </ion-label>
+        </ion-item>
+        }
+        
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
+
