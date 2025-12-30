@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    
+    <ion-title>Details</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="close()">Close</ion-button>
     </ion-buttons>
@@ -13,7 +13,7 @@
 
       <ion-img [src]="movie.image"></ion-img>
       <h2><strong>{{ movie.title }}</strong></h2>
-      <h2>Author: {{ movie.protagonist }}</h2>
+      <p><strong>Author: </strong> {{ movie.protagonist }}</p>
 
       <p>
         <strong>Publication:</strong>
@@ -26,7 +26,7 @@
       </p>
 
       <p>
-        <strong>Review</strong><br />
+        <strong>Review:</strong><br />
         {{ movie.review }}
       </p>
 

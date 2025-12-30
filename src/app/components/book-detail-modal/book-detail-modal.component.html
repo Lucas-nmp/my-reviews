@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    
+    <ion-title>Details</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="close()">Close</ion-button>
     </ion-buttons>
@@ -13,7 +13,7 @@
 
       <ion-img [src]="book.image"></ion-img>
       <h2><strong>{{ book.title }}</strong></h2>
-      <h2>Author: {{ book.author }}</h2>
+      <p><strong>Author: </strong> {{ book.author }}</p>
 
       <p>
         <strong>Publication:</strong>
