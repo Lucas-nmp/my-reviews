@@ -1,53 +1,41 @@
 <app-header title="Books"></app-header>
 
 <ion-content>
+  
   <ion-card>
     <ion-card-header>
       <ion-card-title>Read Books</ion-card-title>
     </ion-card-header>
+
+    <ion-button fill="clear" >
+        Add book
+      </ion-button>
+
     <ion-card-content>
+
       <ion-list>
-        
-        <ion-item button="true">
+
+        @for (book of books; track book.title) {
+          <ion-item button="true">
           <ion-thumbnail slot="start">
-            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+            <img
+              [src]="book.image || 'assets/img/default-book.png'"
+              alt="Book cover"
+            />
           </ion-thumbnail>
+
           <ion-label>
-            <h2>Morir en el intento</h2>
-            <p class="review">matan al hermano de Reacher</p>
+            <h2>{{ book.title }}</h2>
+            <p>{{ book.author }}</p>
+            <ion-note class="date" color="medium">
+              Read: {{ book.readDate | date:'dd/MM/yyyy' }}
+            </ion-note>
           </ion-label>
         </ion-item>
-
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-          </ion-thumbnail>
-          <ion-label>Item</ion-label>
-        </ion-item>
-
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-          </ion-thumbnail>
-          <ion-label>Item</ion-label>
-        </ion-item>
-
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-          </ion-thumbnail>
-          <ion-label>Item</ion-label>
-        </ion-item>
-
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-          </ion-thumbnail>
-          <ion-label>Item</ion-label>
-        </ion-item>
-
+        }
         
       </ion-list>
+
     </ion-card-content>
   </ion-card>
 
