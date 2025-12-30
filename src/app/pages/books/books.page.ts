@@ -6,6 +6,7 @@ import { HeaderComponent } from "src/app/components/header/header.component";
 import { Book } from 'src/app/models/book.model';
 
 import { BookDetailModalComponent } from 'src/app/components/book-detail-modal/book-detail-modal.component';
+import { BookNewModalComponent } from 'src/app/components/book-new-modal/book-new-modal.component';
 
 @Component({
   selector: 'app-books',
@@ -29,6 +30,14 @@ export class BooksPage implements OnInit {
       },
     });
 
+    await modal.present();
+  }
+
+  async newBook() {
+    const modal = await this.modalCtrl.create({
+      component: BookNewModalComponent
+    });
+    
     await modal.present();
   }
 
