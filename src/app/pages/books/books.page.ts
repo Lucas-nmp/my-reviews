@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel, IonContent, IonButton, IonNote } from '@ionic/angular/standalone';
+import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel, IonContent, IonButton, IonNote, ModalController } from '@ionic/angular/standalone';
 import { HeaderComponent } from "src/app/components/header/header.component";
 import { Book } from 'src/app/models/book.model';
+
+import { BookDetailModalComponent } from 'src/app/components/book-detail-modal/book-detail-modal.component';
 
 @Component({
   selector: 'app-books',
@@ -14,10 +16,22 @@ import { Book } from 'src/app/models/book.model';
 })
 export class BooksPage implements OnInit {
 
-  constructor() { }
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
+
+  async openBook(book: Book) {
+    const modal = await this.modalCtrl.create({
+      component: BookDetailModalComponent,
+      componentProps: {
+        book: book,
+      },
+    });
+
+    await modal.present();
+  }
+
 
   books: Book[] = [
     {

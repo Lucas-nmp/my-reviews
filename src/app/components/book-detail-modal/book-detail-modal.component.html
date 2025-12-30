@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+
+      <ion-img [src]="book.image"></ion-img>
+      <h2><strong>{{ book.title }}</strong></h2>
+      <h2>Author: {{ book.author }}</h2>
+
+      <p>
+        <strong>Publication:</strong>
+        {{ book.publicationDate | date:'dd/MM/yyyy' }}
+      </p>
+
+      <p>
+        <strong>Read:</strong>
+        {{ book.readDate | date:'dd/MM/yyyy' }}
+      </p>
+
+      <p>
+        <strong>Review</strong><br />
+        {{ book.review }}
+      </p>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

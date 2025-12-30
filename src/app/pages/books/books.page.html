@@ -16,7 +16,7 @@
       <ion-list>
 
         @for (book of books; track book.title) {
-          <ion-item button="true">
+          <ion-item button="true" (click)="openBook(book)">
           <ion-thumbnail slot="start">
             <img
               [src]="book.image || 'assets/img/default-book.png'"
@@ -33,7 +33,7 @@
           </ion-label>
         </ion-item>
         }
-        
+
       </ion-list>
 
     </ion-card-content>
