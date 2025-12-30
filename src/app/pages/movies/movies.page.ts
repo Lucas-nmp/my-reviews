@@ -5,6 +5,7 @@ import { IonContent, IonCard, IonCardHeader, IonCardTitle, IonButton, IonCardCon
 import { HeaderComponent } from "src/app/components/header/header.component";
 import { Movie } from 'src/app/models/movie.model';
 import { MovieDetailModalComponent } from 'src/app/components/movie-detail-modal/movie-detail-modal.component';
+import { MovieNewModalComponent } from 'src/app/components/movie-new-modal/movie-new-modal.component';
 
 @Component({
   selector: 'app-movies',
@@ -21,15 +22,23 @@ export class MoviesPage implements OnInit {
   }
 
   async openMovie(movie: Movie) {
-      const modal = await this.modalCtrl.create({
-        component: MovieDetailModalComponent,
-        componentProps: {
-          movie: movie,
-        },
-      });
-  
-      await modal.present();
-    }
+    const modal = await this.modalCtrl.create({
+      component: MovieDetailModalComponent,
+      componentProps: {
+        movie: movie,
+      },
+    });
+
+    await modal.present();
+  }
+
+  async newMovie() {
+    const modal = await this.modalCtrl.create({
+      component: MovieNewModalComponent
+    });
+    
+    await modal.present();
+  }
 
   movies: Movie[] = [
       {
