@@ -18,10 +18,10 @@ export class RegisterPage implements OnInit {
   
 
   form = new FormGroup({
-      email: new FormControl('', [Validators.email, Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      userName: new FormControl('', [Validators.required]),
-    })
+    email: new FormControl('', [Validators.email, Validators.required]),
+    password: new FormControl('', [Validators.required]),
+    userName: new FormControl('', [Validators.required]),
+  })
 
   constructor(
     private dbService: DatabaseService, 
@@ -44,10 +44,10 @@ export class RegisterPage implements OnInit {
     );
 
     if (success) {
-      console.log('✅ Usuario registrado');
+      console.log('Usuario registrado');
       this.router.navigateByUrl('/login');
     } else {
-      console.log('❌ Error al registrar usuario');
+      console.log('Error al registrar usuario');
     }
   }
 
