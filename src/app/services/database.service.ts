@@ -20,7 +20,7 @@ export class DatabaseService {
   }
 
   async initDatabase() {
-    console.log('🟢 initDatabase');
+    console.log('initDatabase');
 
     await this.sqlite.checkConnectionsConsistency();
 
@@ -38,22 +38,49 @@ export class DatabaseService {
     );
 
     await this.db.open();
-    console.log('🟢 DB abierta');
+    console.log('DB abierta');
 
     await this.createTables();
-    console.log('🟢 tablas creadas');
+    console.log('tablas creadas');
   }
 
   private async createTables() {
-    const query = `
+    const queries = [
+      `
       CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT NOT NULL UNIQUE,
         email TEXT NOT NULL UNIQUE,
         password TEXT NOT NULL
       );
-    `;
-    await this.db.execute(query);
+      `,
+      `
+      CREATE TABLE IF NOT EXISTS books (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        author TEXT, 
+        readDate TEXT,
+        publicationDate TEXT,
+        review TEXT,
+        image TEXT
+      );
+      `,
+      `
+      CREATE TABLE IF NOT EXISTS movies (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        protagonist TEXT, 
+        viewDate TEXT,
+        publicationYear TEXT,
+        review TEXT,
+        image TEXT
+      );
+      ` 
+
+    ];
+    for (const query of queries) {
+      await this.db.execute(query);
+    }
   }
 
 
@@ -71,7 +98,7 @@ export class DatabaseService {
       await this.db.run(query, [username, email, password]);
       return true;
     } catch (error) {
-      console.error('❌ Error al registrar usuario', error);
+      console.error('Error al registrar usuario', error);
       return false;
     }
   }

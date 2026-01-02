@@ -42,6 +42,7 @@ export class MoviesPage implements OnInit {
 
   movies: Movie[] = [
       {
+        id: 1,
         title: 'Morir en el intento',
         protagonist: 'Lee Child',
         viewDate: new Date('2026-01-01'),
@@ -50,6 +51,7 @@ export class MoviesPage implements OnInit {
         image: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
       },
       {
+        id: 2,
         title: 'El camino oculto',
         protagonist: 'Juan Pérez',
         viewDate: new Date('2025-12-15'),
