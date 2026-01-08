@@ -105,6 +105,26 @@ ion-button{
       --highlight-height: 0;
       --highlight-color-focused: #cecece;
     }
+
+    .gradient-input ion-textarea {
+      font-family: inherit;
+      width: 100%;
+      background: linear-gradient(to left, #0d0d0d, #001926);
+      color: #cecece;
+      border-radius: 17px;
+      --padding-start: 15px;
+      --padding-top: 12px;
+      --padding-bottom: 12px;
+      --highlight-height: 0;
+      resize: none;
+    }
+
+    .input-textarea {
+      height: auto;
+      min-height: 150px; /* ≈ 4 líneas */
+    }
+
+
   
   }
   

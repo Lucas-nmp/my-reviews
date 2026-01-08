@@ -1,0 +1,54 @@
+ion-label {
+    color: aliceblue;
+}
+
+.action-button {
+    
+    --background: var(--ion-color-primary, #3880ff);
+    --color: #ffffff;
+    
+    border-radius: 8px;
+    padding-inline: 12px;
+    min-height: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+ion-button.action-button,
+ion-datetime-button.action-button {
+    --background: var(--ion-color-primary, #3880ff);
+    --color: #ffffff;
+    --border-radius: 8px;
+    height: 36px;
+    min-height: 36px;
+    padding-inline: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+ion-datetime-button.action-button::part(native) {
+    background: var(--ion-color-primary, #3880ff);
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+
+.col-center {
+    display: flex;
+    flex-direction: column;
+     
+}
+
+.col-center ion-label {
+    text-align: center;
+    width: 100%;
+}
+
+
+
+
