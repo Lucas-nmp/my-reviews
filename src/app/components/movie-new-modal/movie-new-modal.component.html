@@ -10,4 +10,83 @@
 </ion-header>
 
 <ion-content>
+  <form class="auth-form" [formGroup]= "form">
+
+    <div class="gradient-input">
+      <ion-label>Title</ion-label>
+      <div class="input">
+        <ion-input formControlName="title" type="text" placeholder="Title">
+        </ion-input>
+      </div>
+    </div>
+
+    <div class="gradient-input">
+      <ion-label>Protagonist</ion-label>
+      <div class="input">
+        <ion-input formControlName="protagonist" type="text" placeholder="Protagonist">
+        </ion-input>
+      </div>
+    </div>
+
+    <div class="gradient-input">
+      <ion-row>
+        <ion-col size="6" class="col-center">
+          <ion-label>Viewing date</ion-label>
+          <ion-datetime-button datetime="viewDate" class="action-button"></ion-datetime-button>
+        </ion-col>
+
+        <ion-col size="6" class="col-center">
+          <ion-label>Publication year</ion-label>
+          <ion-datetime-button datetime="publicationYear" class="action-button"></ion-datetime-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-modal #viewDateModal keepContentsMounted="true">
+        <ng-template>
+          <ion-datetime
+            id="viewDate"
+            presentation="date"
+            formControlName="viewDate"
+            (ionChange)="onViewDateSelected()">
+          </ion-datetime>
+        </ng-template>
+      </ion-modal>
+
+      <ion-modal #publicationYearModal keepContentsMounted="true">
+        <ng-template>
+          <ion-datetime
+            id="publicationYear"
+            presentation="date"
+            formControlName="publicationYear"
+            (ionChange)="onPublicationYearSelected()">
+          </ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </div>
+
+    <div class="gradient-input">
+      <ion-label>Review</ion-label>
+      <div class="input input-textarea">
+        <ion-textarea
+          formControlName="review"
+          placeholder="Review"
+          rows="4"
+          autoGrow="true">
+        </ion-textarea>
+      </div>
+    </div>
+
+    <div>
+      
+      <ion-button class="action-button">
+        Add image
+      </ion-button>
+    </div>
+
+
+
+
+    
+
+  </form>
 </ion-content>
