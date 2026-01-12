@@ -13,7 +13,7 @@
   <form class="auth-form" [formGroup]= "form">
 
       <div class="gradient-input">
-        <ion-label>Title</ion-label>
+        
         <div class="input">
           <ion-input formControlName="title" type="text" placeholder="Title">
           </ion-input>
@@ -21,7 +21,7 @@
       </div>  
 
       <div class="gradient-input">
-        <ion-label>Author</ion-label>
+        
         <div class="input">
           <ion-input formControlName="author" type="text" placeholder="Author">
           </ion-input>
@@ -30,19 +30,9 @@
 
       <div class="gradient-input">
         
-        <ion-row>
-          <ion-col size="6" class="col-center">
-            <ion-label>Reading date</ion-label>
-            <ion-datetime-button datetime="readDate" class="action-button"></ion-datetime-button>
-          </ion-col>
-          <ion-col size="6" class="col-center">
-            <ion-label>Image</ion-label>
-            <ion-button class="action-button">
-              Add image
-            </ion-button>
-          </ion-col>
-        </ion-row>
-          
+        <ion-label>Reading date</ion-label>
+        <ion-datetime-button datetime="readDate" class="action-button"></ion-datetime-button>
+         
         <ion-modal #dateModal keepContentsMounted="true">
           <ng-template>
             <ion-datetime
@@ -57,7 +47,7 @@
       </div>
 
       <div class="gradient-input">
-        <ion-label>Review</ion-label>
+        
         <div class="input input-textarea">
           <ion-textarea
             formControlName="review"
@@ -68,10 +58,19 @@
         </div>
       </div>
 
-
+      <ion-row>
+        <ion-col size="6" class="col-center">
+          <ion-button class="action-button">
+            Add image
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" class="col-center">
+          <ion-button (click)="saveBook()" class="action-button">
+            Save Book
+          </ion-button>
+        </ion-col>
+      </ion-row>
       
-
-
   </form>
   
 </ion-content>

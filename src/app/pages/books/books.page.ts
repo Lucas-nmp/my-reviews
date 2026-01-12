@@ -48,7 +48,6 @@ export class BooksPage implements OnInit {
       title: 'Morir en el intento',
       author: 'Lee Child',
       readDate: new Date('2026-01-01'),
-      publicationDate: new Date('2020-05-10'),
       review: 'Un libro intenso y reflexivo.',
       image: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
     },
@@ -57,7 +56,6 @@ export class BooksPage implements OnInit {
       title: 'El camino oculto',
       author: 'Juan Pérez',
       readDate: new Date('2025-12-15'),
-      publicationDate: new Date('2018-03-20'),
       review: 'Una historia misteriosa.',
       image: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
     }
