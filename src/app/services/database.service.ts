@@ -60,7 +60,6 @@ export class DatabaseService {
         title TEXT NOT NULL,
         author TEXT, 
         readDate TEXT,
-        publicationDate TEXT,
         review TEXT,
         image TEXT
       );
@@ -99,6 +98,27 @@ export class DatabaseService {
       return true;
     } catch (error) {
       console.error('Error al registrar usuario', error);
+      return false;
+    }
+  }
+
+  async saveBook(
+    title: string,
+    author: string,
+    readingDate:string,
+    review: string, 
+    image: string
+  ): Promise<boolean> {
+    try {
+      const query = `
+        INSERT INTO books (title, author, readDate, review, image)
+        VALUES (?, ?, ?, ?, ?);
+      `;
+      
+      await this.db.run(query, [title, author, readingDate, review, image]);
+      return true;
+    } catch (error) {
+      console.error('Error al guardar el libro', error);
       return false;
     }
   }

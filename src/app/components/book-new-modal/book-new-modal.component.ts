@@ -58,9 +58,23 @@ export class BookNewModalComponent  implements OnInit {
     const author = this.form.get('author')!.value as string;
     const readDate = this.form.get('readDate')!.value as string;
     const review = this.form.get('review')!.value as string;
-    const image = this.form.get('image')!.value as string;
+    const image = "ruta imagen";
 
-    
+    const success = await this.dbService.saveBook(
+      title,
+      author, 
+      readDate, 
+      review, 
+      image
+    );
+
+    if (success) {
+      console.log('Libro guardado');
+      // clean form
+    } else {
+      console.log('Error al guardar el libro');
+      
+    }
 
     
   }
