@@ -105,7 +105,7 @@ export class DatabaseService {
   async saveBook(
     title: string,
     author: string,
-    readingDate:string,
+    readDate:string,
     review: string, 
     image: string
   ): Promise<boolean> {
@@ -114,8 +114,8 @@ export class DatabaseService {
         INSERT INTO books (title, author, readDate, review, image)
         VALUES (?, ?, ?, ?, ?);
       `;
-      
-      await this.db.run(query, [title, author, readingDate, review, image]);
+
+      await this.db.run(query, [title, author, readDate, review, image]);
       return true;
     } catch (error) {
       console.error('Error al guardar el libro', error);

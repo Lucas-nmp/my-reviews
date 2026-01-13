@@ -22,7 +22,7 @@ export class BookNewModalComponent  implements OnInit {
     author: new FormControl('', [Validators.required]),
     readDate: new FormControl(new Date().toISOString(), [Validators.required]),
     review: new FormControl('', [Validators.required]),
-    image: new FormControl('', [Validators.required]),
+    image: new FormControl('', ),
   })
 
   constructor(
@@ -39,7 +39,9 @@ export class BookNewModalComponent  implements OnInit {
 
   ngOnInit() {}
 
-  onDateSelected() {
+  onDateSelected(event: any) {
+    const value = event.detail.value; 
+    this.form.get('readDate')?.setValue(value);
     if (this.dateModal && typeof this.dateModal.dismiss === 'function') {
       this.dateModal.dismiss();
     }
@@ -60,6 +62,8 @@ export class BookNewModalComponent  implements OnInit {
     const review = this.form.get('review')!.value as string;
     const image = "ruta imagen";
 
+    console.log(this.form.value);
+    
     const success = await this.dbService.saveBook(
       title,
       author, 
@@ -70,12 +74,17 @@ export class BookNewModalComponent  implements OnInit {
 
     if (success) {
       console.log('Libro guardado');
-      // clean form
+      
+      this.form.reset();
+
+      
+
+
     } else {
       console.log('Error al guardar el libro');
       
     }
-
+    
     
   }
 
