@@ -29,21 +29,25 @@
       </div>  
 
       <div class="gradient-input">
-        
         <ion-label>Reading date</ion-label>
-        <ion-datetime-button datetime="readDate" class="action-button"></ion-datetime-button>
-         
-        <ion-modal #dateModal keepContentsMounted="true">
-          <ng-template>
-            <ion-datetime
-              id="readDate"
-              presentation="date"
-              
-              (ionChange)="onDateSelected($event)">
-            </ion-datetime>
-          </ng-template>
-        </ion-modal>
+        <ion-button (click)="toggleDatePicker()" class="action-button">
+          {{ formatDate(form.get('readDate')?.value) }}
+        </ion-button>
         
+        @if (showDatePicker) {
+          <ion-datetime
+            presentation="date"
+            [value]="form.get('readDate')?.value"
+            (ionChange)="onDateChange($event)"
+            [showDefaultButtons]="false">
+          </ion-datetime>
+          
+          <!-- Botones personalizados -->
+          <div class="datetime-buttons">
+            <ion-button fill="clear" (click)="cancelDatePicker()">Cancel</ion-button>
+            <ion-button fill="clear" (click)="confirmDatePicker()">Done</ion-button>
+          </div>
+        }
       </div>
 
       <div class="gradient-input">

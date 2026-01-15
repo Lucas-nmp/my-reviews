@@ -12,7 +12,7 @@ import { DatabaseService } from 'src/app/services/database.service';
   templateUrl: './book-new-modal.component.html',
   styleUrls: ['./book-new-modal.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, ReactiveFormsModule, FormsModule, IonLabel, IonDatetimeButton, IonModal, IonDatetime, IonInput, IonRow, IonCol, IonTextarea],
+  imports: [CommonModule, IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, ReactiveFormsModule, FormsModule, IonLabel, IonDatetime, IonInput, IonRow, IonCol, IonTextarea],
 })
 export class BookNewModalComponent  implements OnInit {
 
@@ -39,12 +39,41 @@ export class BookNewModalComponent  implements OnInit {
 
   ngOnInit() {}
 
-  onDateSelected(event: any) {
-    const value = event.detail.value; 
-    this.form.get('readDate')?.setValue(value);
-    if (this.dateModal && typeof this.dateModal.dismiss === 'function') {
-      this.dateModal.dismiss();
+  showDatePicker = false;
+  tempDate: string | null = null;
+
+  toggleDatePicker() {
+    this.showDatePicker = !this.showDatePicker;
+    if (this.showDatePicker) {
+      this.tempDate = this.form.get('readDate')?.value ?? null;
     }
+  }
+
+  onDateChange(event: any) {
+    this.tempDate = event.detail.value;
+  }
+
+  cancelDatePicker() {
+    this.showDatePicker = false;
+    this.tempDate = null;
+  }
+
+  confirmDatePicker() {
+    if (this.tempDate) {
+      this.form.get('readDate')?.setValue(this.tempDate);
+    }
+    this.showDatePicker = false;
+    this.tempDate = null;
+  }
+
+  formatDate(isoString: string | null | undefined): string {
+    if (!isoString) return 'Select date';
+    const date = new Date(isoString);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric' 
+    });
   }
 
   close() {
