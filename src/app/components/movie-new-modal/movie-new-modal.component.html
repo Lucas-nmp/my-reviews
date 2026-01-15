@@ -46,8 +46,8 @@
           <ion-datetime
             id="viewDate"
             presentation="date"
-            formControlName="viewDate"
-            (ionChange)="onViewDateSelected()">
+            
+            (ionChange)="onViewDateSelected($event)">
           </ion-datetime>
         </ng-template>
       </ion-modal>
@@ -57,8 +57,8 @@
           <ion-datetime
             id="publicationYear"
             presentation="date"
-            formControlName="publicationYear"
-            (ionChange)="onPublicationYearSelected()">
+            
+            (ionChange)="onPublicationYearSelected($event)">
           </ion-datetime>
         </ng-template>
       </ion-modal>

@@ -127,16 +127,17 @@ export class DatabaseService {
     title: string,
     protagonist: string,
     viewDate:string,
+    publicationYear: string,
     review: string, 
     image: string
   ): Promise<boolean> {
     try {
       const query = `
-        INSERT INTO movies (title, protagonist, viewDate, review, image)
+        INSERT INTO movies (title, protagonist, viewDate, publicationYear, review, image)
         VALUES (?, ?, ?, ?, ?);
       `;
 
-      await this.db.run(query, [title, protagonist, viewDate, review, image]);
+      await this.db.run(query, [title, protagonist, viewDate, publicationYear, review, image]);
       return true;
     } catch (error) {
       console.error('Error al guardar la pelicula', error);

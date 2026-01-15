@@ -77,15 +77,9 @@ export class BookNewModalComponent  implements OnInit {
       
       this.form.reset();
 
-      
-
-
     } else {
       console.log('Error al guardar el libro');
-      
-    }
-    
-    
+    }    
   }
 
 }
