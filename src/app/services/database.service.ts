@@ -123,6 +123,27 @@ export class DatabaseService {
     }
   }
 
+  async saveMovie(
+    title: string,
+    protagonist: string,
+    viewDate:string,
+    review: string, 
+    image: string
+  ): Promise<boolean> {
+    try {
+      const query = `
+        INSERT INTO movies (title, protagonist, viewDate, review, image)
+        VALUES (?, ?, ?, ?, ?);
+      `;
+
+      await this.db.run(query, [title, protagonist, viewDate, review, image]);
+      return true;
+    } catch (error) {
+      console.error('Error al guardar la pelicula', error);
+      return false;
+    }
+  }
+
 
 
   async getUserByEmail(email: string) {
