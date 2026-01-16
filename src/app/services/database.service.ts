@@ -70,7 +70,6 @@ export class DatabaseService {
         title TEXT NOT NULL,
         protagonist TEXT, 
         viewDate TEXT,
-        publicationYear TEXT,
         review TEXT,
         image TEXT
       );
@@ -133,11 +132,11 @@ export class DatabaseService {
   ): Promise<boolean> {
     try {
       const query = `
-        INSERT INTO movies (title, protagonist, viewDate, publicationYear, review, image)
+        INSERT INTO movies (title, protagonist, viewDate, review, image)
         VALUES (?, ?, ?, ?, ?);
       `;
 
-      await this.db.run(query, [title, protagonist, viewDate, publicationYear, review, image]);
+      await this.db.run(query, [title, protagonist, viewDate, review, image]);
       return true;
     } catch (error) {
       console.error('Error al guardar la pelicula', error);

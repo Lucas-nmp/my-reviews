@@ -36,6 +36,9 @@ export class MovieNewModalComponent  implements OnInit {
 
   ngOnInit() {}
 
+  showDatePicker = false;
+  tempDate: string | null = null;
+
   @ViewChild('viewDateModal', { static: false }) viewDateModal?: IonModal;
   @ViewChild('publicationYearModal', { static: false }) publicationYearModal?: IonModal;
 
@@ -53,6 +56,40 @@ export class MovieNewModalComponent  implements OnInit {
     if (this.publicationYearModal && typeof this.publicationYearModal.dismiss === 'function') {
       this.publicationYearModal.dismiss();
     }
+  }
+
+  toggleDatePicker() {
+    this.showDatePicker = !this.showDatePicker;
+    if (this.showDatePicker) {
+      this.tempDate = this.form.get('viewDate')?.value ?? null;
+    }
+  }
+
+  onDateChange(event: any) {
+    this.tempDate = event.detail.value;
+  }
+
+  cancelDatePicker() {
+    this.showDatePicker = false;
+    this.tempDate = null;
+  }
+
+  confirmDatePicker() {
+    if (this.tempDate) {
+      this.form.get('viewDate')?.setValue(this.tempDate);
+    }
+    this.showDatePicker = false;
+    this.tempDate = null;
+  }
+
+  formatDate(isoString: string | null | undefined): string {
+    if (!isoString) return 'Select date';
+    const date = new Date(isoString);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric' 
+    });
   }
 
   close() {
