@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Filesystem, Directory } from '@capacitor/filesystem';
 import {
   FormControl,
   FormGroup,
@@ -17,8 +19,6 @@ import {
   ModalController,
   IonIcon,
   IonLabel,
-  IonDatetimeButton,
-  IonModal,
   IonDatetime,
   IonInput,
   IonRow,
@@ -46,8 +46,6 @@ import { DatabaseService } from 'src/app/services/database.service';
     ReactiveFormsModule,
     FormsModule,
     IonLabel,
-    IonDatetimeButton,
-    IonModal,
     IonDatetime,
     IonInput,
     IonRow,
@@ -56,6 +54,8 @@ import { DatabaseService } from 'src/app/services/database.service';
   ],
 })
 export class MovieNewModalComponent implements OnInit {
+
+  private selectedImagePath: string = '';
   form = new FormGroup({
     title: new FormControl('', [Validators.required]),
     protagonist: new FormControl('', [Validators.required]),
@@ -146,7 +146,7 @@ export class MovieNewModalComponent implements OnInit {
     const protagonist = this.form.get('protagonist')!.value as string;
     const viewDate = this.form.get('viewDate')!.value as string;
     const review = this.form.get('review')!.value as string;
-    const image = 'ruta imagen';
+    const image = this.selectedImagePath || '';
 
     console.log(this.form.value);
 
@@ -159,11 +159,79 @@ export class MovieNewModalComponent implements OnInit {
     );
 
     if (success) {
-      console.log('Pelicula guardado');
+      console.log('Pelicula guardada');
 
       this.form.reset();
+      this.selectedImagePath = '';
     } else {
       console.log('Error al guardar la pelicula');
+    }
+  }
+
+  async selectImage() {
+    try {
+      // Seleccionar imagen de la galería
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: false,
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Photos // Usar CameraSource.Camera para tomar foto
+      });
+
+      if (image.path) {
+        // Guardar la imagen en el almacenamiento permanente de la app
+        const savedImage = await this.saveImageToAppStorage(image.path);
+        this.selectedImagePath = savedImage;
+        console.log('Imagen guardada en:', this.selectedImagePath);
+      }
+    } catch (error) {
+      console.error('Error al seleccionar imagen:', error);
+    }
+  }
+
+  async saveImageToAppStorage(imagePath: string): Promise<string> {
+    try {
+      // Leer el archivo como base64
+      const imageData = await Filesystem.readFile({
+        path: imagePath
+      });
+
+      // Generar nombre único para la imagen
+      const fileName = `movie_${new Date().getTime()}.jpeg`;
+
+      // Guardar en el directorio de datos de la app
+      const savedFile = await Filesystem.writeFile({
+        path: `movies/${fileName}`,
+        data: imageData.data,
+        directory: Directory.Data,
+        recursive: true // Crea el directorio si no existe
+      });
+
+      // Retornar la ruta relativa que se guardará en la BD
+      return `movies/${fileName}`;
+    } catch (error) {
+      console.error('Error al guardar imagen:', error);
+      throw error;
+    }
+  }
+
+  // Método para recuperar la imagen desde la BD y mostrarla 
+  async getImageUrl(imagePath: string): Promise<string> {
+    if (!imagePath) {
+      return ''; // o una imagen placeholder
+    }
+
+    try {
+      const file = await Filesystem.readFile({
+        path: imagePath,
+        directory: Directory.Data
+      });
+
+      // Convertir a base64 URL para mostrar en el HTML
+      return `data:image/jpeg;base64,${file.data}`;
+    } catch (error) {
+      console.error('Error al leer imagen:', error);
+      return '';
     }
   }
 }
