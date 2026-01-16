@@ -48,10 +48,10 @@ All components are **standalone: true**. Example from [books.page.ts](src/app/pa
   templateUrl: './books.page.html',
   styleUrls: ['./books.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonCard, ...] // Must import all deps
+  imports: [CommonModule, FormsModule, IonCard, IonButton, IonModal, ...] // Must import all Ionic deps explicitly
 })
 ```
-**Action**: When creating new pages/components, always add `standalone: true` and explicitly list all Ionic imports.
+**Action**: When creating new pages/components, always add `standalone: true` and explicitly list all Ionic imports from `@ionic/angular/standalone`.
 
 ### Routing
 Routes use **lazy loading** in [app.routes.ts](src/app/app.routes.ts):
@@ -84,7 +84,19 @@ this.platform.ready().then(() => {
 **Critical**: Never call `initDatabase()` multiple times; it closes and recreates the connection. Database operations are **async** (`Promise` based); all query methods are `async`.
 
 ### Data Models
-Interfaces define entity shapes ([book.model.ts](src/app/models/book.model.ts), [movie.model.ts](src/app/models/movie.model.ts)). **Current limitation**: No service-side data persistence layer—pages mock data in arrays. Real CRUD operations must extend `DatabaseService` with methods like `addBook()`, `getBooks()`, etc.
+Interfaces define entity shapes ([book.model.ts](src/app/models/book.model.ts), [movie.model.ts](src/app/models/movie.model.ts)). **Current limitation**: Pages mock data in arrays; real CRUD operations exist in `DatabaseService` (e.g., `saveBook()`) but pages don't fetch from DB yet.
+
+### Forms in Modals
+New/edit modals use ReactiveForms with FormGroup. Example from [book-new-modal.component.ts](src/app/components/book-new-modal/book-new-modal.component.ts):
+```typescript
+form = new FormGroup({
+  title: new FormControl('', [Validators.required]),
+  author: new FormControl('', [Validators.required]),
+  // ...
+});
+```
+- Date pickers use IonDatetime with temp state for confirmation
+- Save calls DB service and resets form on success
 
 ### Styling
 - Global styles: [global.scss](src/theme/variables.scss)
@@ -125,6 +137,6 @@ import { IonCard, IonButton, IonContent, IonHeader, IonToolbar, ... } from '@ion
 - **New Service**: Place in [src/app/services/](src/app/services/); provide in root with `@Injectable({ providedIn: 'root' })`
 
 ## Open Patterns & TODOs
-- Real CRUD for books/movies not yet wired to SQLite (currently mocked arrays)
+- Real CRUD for books/movies not yet wired to pages (currently mocked arrays in pages, but DB save methods exist)
 - Fingerprint authentication mentioned in README but not implemented
 - No state management (NgRx, Signals) — consider if collection scale grows

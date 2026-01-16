@@ -1,38 +1,77 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, ModalController, IonIcon, IonLabel, IonDatetimeButton, IonModal, IonDatetime, IonInput, IonRow, IonCol, IonTextarea } from "@ionic/angular/standalone";
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  IonContent,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonButtons,
+  IonButton,
+  ModalController,
+  IonIcon,
+  IonLabel,
+  IonDatetimeButton,
+  IonModal,
+  IonDatetime,
+  IonInput,
+  IonRow,
+  IonCol,
+  IonTextarea,
+} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { closeOutline } from 'ionicons/icons';
 import { DatabaseService } from 'src/app/services/database.service';
-
 
 @Component({
   selector: 'app-movie-new-modal',
   templateUrl: './movie-new-modal.component.html',
   styleUrls: ['./movie-new-modal.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, ReactiveFormsModule, FormsModule, IonLabel, IonDatetimeButton, IonModal, IonDatetime, IonInput, IonRow, IonCol, IonTextarea],
+  imports: [
+    CommonModule,
+    IonContent,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonButtons,
+    IonButton,
+    IonIcon,
+    ReactiveFormsModule,
+    FormsModule,
+    IonLabel,
+    IonDatetimeButton,
+    IonModal,
+    IonDatetime,
+    IonInput,
+    IonRow,
+    IonCol,
+    IonTextarea,
+  ],
 })
-export class MovieNewModalComponent  implements OnInit {
- 
-    form = new FormGroup({
-    title: new FormControl('', [ Validators.required]),
+export class MovieNewModalComponent implements OnInit {
+  form = new FormGroup({
+    title: new FormControl('', [Validators.required]),
     protagonist: new FormControl('', [Validators.required]),
     viewDate: new FormControl(new Date().toISOString(), [Validators.required]),
-    publicationYear: new FormControl(new Date().toISOString(), [Validators.required]),
     review: new FormControl('', [Validators.required]),
-    image: new FormControl('', [Validators.required]),
-  })
+    image: new FormControl(''),
+  });
 
   constructor(
     private modalCtrl: ModalController,
     private dbService: DatabaseService
   ) {
     addIcons({
-      closeOutline
-    })
-   }
+      closeOutline,
+    });
+  }
 
   ngOnInit() {}
 
@@ -87,10 +126,10 @@ export class MovieNewModalComponent  implements OnInit {
   formatDate(isoString: string | null | undefined): string {
     if (!isoString) return 'Select date';
     const date = new Date(isoString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'short', 
-      day: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
     });
   }
 
@@ -107,26 +146,24 @@ export class MovieNewModalComponent  implements OnInit {
     const protagonist = this.form.get('protagonist')!.value as string;
     const viewDate = this.form.get('viewDate')!.value as string;
     const review = this.form.get('review')!.value as string;
-    const image = "ruta imagen";
+    const image = 'ruta imagen';
 
     console.log(this.form.value);
-    
+
     const success = await this.dbService.saveMovie(
       title,
-      protagonist, 
-      viewDate, 
-      review, 
+      protagonist,
+      viewDate,
+      review,
       image
     );
 
     if (success) {
       console.log('Pelicula guardado');
-      
+
       this.form.reset();
-
     } else {
-      console.log('Error al guardar la pelicula'); 
-    }    
+      console.log('Error al guardar la pelicula');
+    }
   }
-
 }
