@@ -35,7 +35,7 @@ export class BookNewModalComponent  implements OnInit {
     })
    }
 
-  @ViewChild('dateModal', { static: false }) dateModal?: IonModal;
+  //@ViewChild('dateModal', { static: false }) dateModal?: IonModal;
 
   ngOnInit() {}
 

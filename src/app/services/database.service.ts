@@ -126,7 +126,6 @@ export class DatabaseService {
     title: string,
     protagonist: string,
     viewDate:string,
-    publicationYear: string,
     review: string, 
     image: string
   ): Promise<boolean> {

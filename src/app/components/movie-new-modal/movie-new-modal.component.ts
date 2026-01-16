@@ -39,7 +39,7 @@ export class MovieNewModalComponent  implements OnInit {
   showDatePicker = false;
   tempDate: string | null = null;
 
-  @ViewChild('viewDateModal', { static: false }) viewDateModal?: IonModal;
+  /*@ViewChild('viewDateModal', { static: false }) viewDateModal?: IonModal;
   @ViewChild('publicationYearModal', { static: false }) publicationYearModal?: IonModal;
 
   onViewDateSelected(event: any) {
@@ -49,6 +49,7 @@ export class MovieNewModalComponent  implements OnInit {
       this.viewDateModal.dismiss();
     }
   }
+  
 
   onPublicationYearSelected(event: any) {
     const value = event.detail.value; 
@@ -57,6 +58,7 @@ export class MovieNewModalComponent  implements OnInit {
       this.publicationYearModal.dismiss();
     }
   }
+  */
 
   toggleDatePicker() {
     this.showDatePicker = !this.showDatePicker;
@@ -104,7 +106,6 @@ export class MovieNewModalComponent  implements OnInit {
     const title = this.form.get('title')!.value as string;
     const protagonist = this.form.get('protagonist')!.value as string;
     const viewDate = this.form.get('viewDate')!.value as string;
-    const publicationYear = this.form.get('publicationYear')!.value as string;
     const review = this.form.get('review')!.value as string;
     const image = "ruta imagen";
 
@@ -114,7 +115,6 @@ export class MovieNewModalComponent  implements OnInit {
       title,
       protagonist, 
       viewDate, 
-      publicationYear,
       review, 
       image
     );
