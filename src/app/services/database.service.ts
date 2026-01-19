@@ -4,6 +4,7 @@ import {
   SQLiteConnection,
   SQLiteDBConnection,
 } from '@capacitor-community/sqlite';
+import { Book } from '../models/book.model';
 
 @Injectable({
   providedIn: 'root',
@@ -143,6 +144,10 @@ export class DatabaseService {
     }
   }
 
+  async getAllBooks(): Promise<Book[]> {
+    const result = await this.db.query('SELECT * FROM books');
+    return (result.values ?? []) as Book[];
+  }
 
 
   async getUserByEmail(email: string) {
