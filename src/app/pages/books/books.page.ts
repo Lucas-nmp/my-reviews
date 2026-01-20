@@ -75,6 +75,15 @@ export class BooksPage implements OnInit {
     });
     
     await modal.present();
+
+    // Esperar a que el modal se cierre y recibir datos
+    const { data, role } = await modal.onDidDismiss();
+
+    // Si se guardó un libro, recargar la lista
+    if (data?.bookSaved) {
+      console.log('Libro guardado, recargando lista...');
+      await this.loadBooks();
+    }
   }
 
 }

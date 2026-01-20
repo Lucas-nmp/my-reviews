@@ -77,6 +77,15 @@ export class MoviesPage implements OnInit {
     });
     
     await modal.present();
+
+    // Esperar a que el modal se cierre y recibir datos
+    const { data, role } = await modal.onDidDismiss();
+
+    // Si se guardó una pelicula, recargar la lista
+    if (data?.movieSaved) {
+      console.log('Pelicula guardada, recargando lista...');
+      await this.loadMovies();
+    }
   }
 
 }

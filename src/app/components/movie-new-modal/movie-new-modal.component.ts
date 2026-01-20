@@ -133,8 +133,10 @@ export class MovieNewModalComponent implements OnInit {
     });
   }
 
-  close() {
-    this.modalCtrl.dismiss();
+  async close() {
+    await this.modalCtrl.dismiss({
+      movieSaved: false
+    });
   }
 
   async saveMovie() {
@@ -163,6 +165,11 @@ export class MovieNewModalComponent implements OnInit {
 
       this.form.reset();
       this.selectedImagePath = '';
+      // Cerrar el modal y pasar información de que se guardó
+      await this.modalCtrl.dismiss({
+        movieSaved: true
+      });
+
     } else {
       console.log('Error al guardar la pelicula');
     }

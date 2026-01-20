@@ -78,8 +78,10 @@ export class BookNewModalComponent  implements OnInit {
     });
   }
 
-  close() {
-    this.modalCtrl.dismiss();
+  async close() {
+    await this.modalCtrl.dismiss({
+      bookSaved: false
+    });
   }
 
   async saveBook() {
@@ -108,6 +110,11 @@ export class BookNewModalComponent  implements OnInit {
       
       this.form.reset();
       this.selectedImagePath = '';
+      // Cerrar el modal y pasar información de que se guardó
+      await this.modalCtrl.dismiss({
+        bookSaved: true
+      });
+
     } else {
       console.log('Error al guardar el libro');
     }    
