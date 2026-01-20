@@ -77,25 +77,4 @@ export class BooksPage implements OnInit {
     await modal.present();
   }
 
-  /*
-  books: Book[] = [
-    {
-      id: 1,
-      title: 'Morir en el intento',
-      author: 'Lee Child',
-      readDate: new Date('2026-01-01'),
-      review: 'Un libro intenso y reflexivo.',
-      image: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    },
-    {
-      id: 2,
-      title: 'El camino oculto',
-      author: 'Juan Pérez',
-      readDate: new Date('2025-12-15'),
-      review: 'Una historia misteriosa.',
-      image: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    }
-  ];
-  */
-
 }
